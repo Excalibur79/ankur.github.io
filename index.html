@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ankur</title>
+    <style>
+        #colourchange
+        {
+            background-color:red;
+            width:150px;
+            height:150px;
+            display:none;
+            position:relative;
+        }
+        #dark
+        {
+             background-color:black;
+            height:2000px;
+            border-radius:40px;
+        }
+        #heading
+        {
+            background-color:#12ECE7 ;
+            color:black;
+            width:280px;
+            margin:0 auto;
+
+            padding:5px;
+            border-radius:20px;
+            border:3px black solid;
+            text-align:center;
+        }
+    </style>
+</head>
+<body>
+     <h1 id="heading">REACTION TESTER</h1>
+    <h1 id="time">Time Taken:</h1>
+    <p> <button id="end">Result</button></p>
+    <hr>
+   <div id="dark"><div id="colourchange"></div>
+    <script type="text/javascript">
+        var start;
+        var array=new Array();
+        function randomcolor()
+        {
+            var randomColor = '#'+Math.floor(Math.random()*16777215).toString(16);
+            return randomColor;
+        }
+        function makeshapeappear()
+        {
+            var x=Math.random()*940;
+            var y=Math.random()*700;
+            var wi=Math.random()*200;
+            var hi=Math.random()*200;
+            if((wi<=50)||(hi<=50))
+            {
+                 document.getElementById("colourchange").style.width="150px";
+                document.getElementById("colourchange").style.height="150px";
+                 document.getElementById("colourchange").style.borderRadius="50%";
+
+
+            }
+            else
+            {
+                  document.getElementById("colourchange").style.width=wi+"px";
+            document.getElementById("colourchange").style.height=hi+"px";
+             document.getElementById("colourchange").style.borderRadius="0%";
+
+            }
+            document.getElementById("colourchange").style.display="block";
+             document.getElementById("colourchange").style.top=x+"px";
+             document.getElementById("colourchange").style.left=y+"px";
+              document.getElementById("colourchange").style.backgroundColor=randomcolor();
+
+
+
+
+
+            start=new Date().getTime();
+        }
+        setTimeout(makeshapeappear,Math.random()*1000);
+       document.getElementById("colourchange").onclick=function()
+       {
+            var end=new Date().getTime();
+            document.getElementById("colourchange").style.display="none";
+            document.getElementById("time").innerHTML="Time Taken:"+(end-start)+"ms";
+            array.push(end-start);
+           document.getElementById("colourchange").style.display="none";
+           setTimeout(makeshapeappear,Math.random()*1000);
+
+
+       }
+       document.getElementById("end").onclick=function(){
+       document.getElementById("time").innerHTML="<h1>"+"Your Best Score is-"+Math.min.apply(null,array)+"</h1>";
+
+
+       }
+
+
+
+
+    </script>
+
+   </div>
+</body>
+</html>
